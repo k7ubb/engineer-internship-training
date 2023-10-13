@@ -19,7 +19,7 @@
 
 <body>
     <div class="header">
-        <span>N（ベータバージョン）</span>
+        <span><?= $this->get('pageName') ?></span>
     </div>
 
     <br>
@@ -27,7 +27,7 @@
     <div class="content">
         <div>
             <!-- 投稿フォーム -->
-            <form method="POST" action="/Posts/create" class="post-form">
+            <form class="post-form">
                 <div class="post-form-name">
                     <h4>名前</h4>
                     <input type="text" id="name" name="name" class="post-form-name-input" placeholder="あなたの名前を入力してください。" maxlength="30" required>
@@ -52,10 +52,14 @@
                                 <img src="/imgs/egg_purple.png" class="post-image" alt="egg_icon">
                             </div>
                             <div class="post-info" data-id="<?=$post['id']?>">
-                                <input type="text" class="post-name post-not-edit-input" value="{名前}" readonly><br>
-                                <textarea class="post-text post-not-edit-textarea" readonly>Hello, world</textarea>
+                                <div class="post-name-created-at">
+                                    <input type="text" class="post-name post-not-edit-input" value="<?=$post['name']?>" readonly>
+                                    <p class="post created-at"><?=$post['created_at']?></p>
+                                </div>
+                                <textarea class="post-text post-not-edit-textarea" readonly><?=$post['message']?></textarea>
                                 <div class="post-action">
                                     <button type="button" class="post-action-btn edit-btn" onclick="editPost(this)">✒️編集</button>
+                                    <button type="button" class="post-action-btn like-btn" onclick="likePost(this)">🥩いいね <?=$post['favorite']?></button>
                                     <button type="button" class="post-action-btn delete-btn" onclick="deletePost(this)">🗑削除</button>
                                 </div>
                             </div>

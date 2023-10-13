@@ -13,9 +13,19 @@ class Favorite
      *
      * @param string $postId 投稿ID
      */
-    public function save(string $postId): void
+    public function save(int $postId): void
     {
-        // 未実装 応用課題:いいね機能
+        $pdo = $this->dbConnect();
+        $query = "INSERT INTO favorites(`post_id`) VALUE($postId)";
+        $pdo->query($query);
+    }
+
+    public function count(int $postId): int
+    {
+        $pdo = $this->dbConnect();
+        $query = "SELECT COUNT(*) AS CNT FROM favorites";
+        return 0;
+        //return $pdo->query($query)[0]['CNT'];
     }
 
     /**
