@@ -20,13 +20,20 @@ class PostsController extends AppController
      */
     public function index(): void
     {
-        $pageName = 'HOME / N（ベータバージョン）';
+        $pageName = 'ジンギスカン Chat🥩';
         $this->assign('pageName', $pageName);
 
         $post = new Post();
         $posts = $post->fetch();
-        $this->assign('posts', $posts);
 
+        $favorite = new Favorite();
+        foreach($posts as $post) {
+#            $post['favorite'] = $favorite->count($post['id']);
+            $post['favorite'] = $post['id'];
+        }
+        
+        $this->assign('posts', $posts);
+        
         $this->show('Posts/index.php');
 
         return;
@@ -45,7 +52,7 @@ class PostsController extends AppController
         $post = new Post();
         $post->save($name, $message);
 
-        header('Location: /');
+        echo '更新に成功しました。';
     }
 
     /**
@@ -55,10 +62,6 @@ class PostsController extends AppController
      */
     public function edit(): void
     {
-        // TODO: 必須課題3:投稿更新機能実装時に消す
-        echo 'この機能は未完成です';
-        return;
-
         $name = $this->request->getData('name');
         $message = $this->request->getData('message');
         $id = (int)$this->request->getData('id');
@@ -75,10 +78,6 @@ class PostsController extends AppController
      */
     public function delete(): void
     {
-        // TODO: 応用課題:投稿削除機能実装時に消す
-        echo 'この機能は未完成です';
-        return;
-
         $id = (int)$this->request->getData('id');
 
         $post = new Post();
@@ -93,6 +92,10 @@ class PostsController extends AppController
      */
     public function favorite(): void
     {
-        // 未実装 応用課題:いいね機能
+        $id = (int)$this->request->getData('id');
+
+        $favorite = new Favorite();
+        $favorite->save($id);
+        echo 'いいねに成功しました。';
     }
 }

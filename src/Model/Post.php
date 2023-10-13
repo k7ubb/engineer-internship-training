@@ -30,8 +30,11 @@ class Post
      */
     public function update(int $id, string $name, string $message): void
     {
-        // 未実装
-        // 必須課題3:投稿更新機能
+        $pdo = $this->dbConnect();
+        $query = "UPDATE `posts`
+            SET `name` = '$name', `message` = '$message'
+            WHERE `id` = $id ";
+        $pdo->query($query);
     }
 
     /**
@@ -41,8 +44,10 @@ class Post
      */
     public function delete(int $id): void
     {
-        // 未実装
-        // 応用課題:投稿削除機能
+        $pdo = $this->dbConnect();
+        $query = "DELETE FROM `posts`
+            WHERE `id` = $id ";
+        $pdo->query($query);
     }
 
     /**
@@ -53,7 +58,7 @@ class Post
     public function fetch(): array
     {
         $pdo = $this->dbConnect();
-        $sql = "SELECT `id`, `name`, `message` 
+        $sql = "SELECT `id`, `name`, `message`, `created_at`
             FROM posts 
             ORDER BY `id` DESC";
         $statement = $pdo->query($sql);

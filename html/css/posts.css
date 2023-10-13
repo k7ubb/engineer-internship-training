@@ -1,14 +1,80 @@
 /* 追加するCSS */
+body {
+    background-color: rgb(30, 31, 34);
+    color: #eef;
+}
 
+.header {
+    background-color: #003;
+    font-size: 2em;
+}
 
+button {
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.post-form-name, .post-form-message {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.post-form-name h4, .post-form-message h4 {
+    width: 100px;
+}
+
+.post-form-submit-button {
+    background: #99f;
+    border: 1px solid #00f;
+    width: 130px;
+    font-size: 1.5em;
+    transition: background 0.5s;
+}
+
+.post-form-submit-button:hover {
+    background: #66c;
+    border: 1px solid #00f;
+    width: 130px;
+}
+
+.post-form-name-input, .post-form-message-text {
+    width: 300px;
+}
+
+.content {
+    padding: 16px;
+}
+
+.posts > .post:not(:first-child) {
+    margin-top: 32px;
+}
+
+.post-action-btn {
+    background: #ccc;
+    border: 1px solid #999;
+    width: 130px;
+    font-size: 1.5em;
+    transition: background 0.5s;
+}
+
+.post-action-btn:hover {
+    background: #ddd;
+    width: 130px;
+}
 
 /* 投稿に関するCSS */
 .post {
     display: flex;
+    padding: 8px;
+}
+
+.post input, .post textarea {
+    color: #eef;
 }
 
 .post-icon {
     width: 120px;
+    margin-right: 8px;
 }
 
 .post-image {
@@ -23,6 +89,12 @@
     width: 100%;
 }
 
+.post-name, .post-text {
+    border: 1px solid #eef;
+    margin-bottom: 2px;
+    background-color: rgb(30, 31, 34);
+}
+
 .post-info {
     position: relative;
     width: 100%;
@@ -34,6 +106,13 @@
     right: 0px;
 }
 
+.post-name-created-at {
+    display: flex;
+}
+
+.post-name-created-at p {
+    margin: 0;
+}
 /* inputのデフォルトスタイルをリセット */
 .post-not-edit-input {
     padding: 0;
